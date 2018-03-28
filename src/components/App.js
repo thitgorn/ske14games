@@ -4,10 +4,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 // firebase
 import firebase from 'firebase'
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 // config
 import { config } from '../config/firebase/config'
-import { firebaseUiConfig } from '../config/firebase/method'
+import { title } from '../config/config'
 
 import Home from './user/Home'
 import Admin from './admin/Index'
@@ -48,10 +47,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <h1>Login</h1>
-          <StyledFirebaseAuth uiConfig={firebaseUiConfig} firebaseAuth={firebase.auth()}/>
-          <button onClick={ ()=> firebase.auth().signOut() }>Sign out</button> 
-          { this.state.admin ? <AdminNavbar/> : <UserNavbar/> }
+          { this.state.admin ? <AdminNavbar title={title}/> : <UserNavbar title={title} /> }
 
           <Route exact path="/" component={ ()=> <Home/>} />
 
