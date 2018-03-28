@@ -2,9 +2,6 @@ import React, { Component } from 'react'
 import { signIn , signOut } from '../../config/routes'
 
 export class Navbar extends Component {
-  constructor(props) {
-    super(props)
-  }
 
   componentDidMount() {
     document.addEventListener('DOMContentLoaded', function () {
@@ -38,11 +35,13 @@ export class Navbar extends Component {
     return (
       <div>
         <nav className="navbar is-warning">
-          <h3>{this.props.title}</h3>
+          <div className="navbar-item is-hoverable is-boxed">
+            <a style={{textDecoration:'none' , color:'black'}} href="/"><h3>{this.props.title}</h3></a>
+          </div>
           <div className="navbar-end">
             <div className="navbar-item has-dropdown is-hoverable">
               <div className="navbar-link">
-                Guest
+                {this.props.username}
               </div>
               <div className="navbar-dropdown is-boxed is-right">
                 <a className="navbar-item" href={signIn}>
