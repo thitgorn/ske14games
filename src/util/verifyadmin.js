@@ -1,6 +1,5 @@
 var verifyAdmin = {
     verify : (firebase,uid,setState) => {
-        console.log("verifying")
         var isAdmin = false
         var db = firebase.database().ref('/powerUser');
         db.on('value', function(snapshot) {
@@ -10,7 +9,7 @@ var verifyAdmin = {
                     isAdmin = true
                 }
             })
-            setState({admin : isAdmin})
+            setState({admin : isAdmin })
         });
     }
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route , Switch } from 'react-router-dom'
 
 // firebase
 import firebase from 'firebase'
@@ -26,7 +26,8 @@ class App extends Component {
       isLogin : false,
       user : null,
       admin : false,
-      username : "Guest"
+      username : "Guest",
+      isLoaded : false,
     }
     // initialize firebase
     firebase.initializeApp(config)
@@ -42,6 +43,7 @@ class App extends Component {
           // check admin
           verifyAdmin.verify(firebase,user.uid,this.setState.bind(this))
         }
+        this.setState( {isLoaded : true})
       }
     );
   }
@@ -50,16 +52,31 @@ class App extends Component {
     return (
       <Router>
         <div>
-          { this.state.admin ? <AdminNavbar title={title} username={this.state.username}/> : <UserNavbar title={title} username={this.state.username}/> }
+          { this.state.admin ? <AdminNavbar title={title} username={this.state.username}/> : <UserNavbar title={title} username={this.state.username}/>}
 
-          <Route exact path="/" component={ ()=> <Home/>} />
-          <Route path="/signin" component={ ()=> <SignIn firebase={firebase}/>} />
-          <Route path="/signout" component={ ()=> <SignOut/>}/>
-          <Route path="/admin" component={ ()=> <Admin/>} />
+          { this.state.isLoaded ? 
+            <Switch>
+              <Route exact path="/" component={ ()=> <Home/>} />
+              <Route path="/signin" component={ ()=> <SignIn firebase={firebase}/>} />
+              <Route path="/signout" component={ ()=> <SignOut/>}/>
+              { this.state.admin ? <Route path="/admin" component={ ()=> <Admin isAdmin={this.state.admin}/>} /> : null }
+              <Route component={NoMatch} />
+            </Switch>
+            :
+            <div>หมุนๆ</div>
+          }
         </div>
       </Router>
     );
   }
 }
+
+const NoMatch = ({ location }) => (
+  <div>
+    <h3>
+      Page <code>{location.pathname}</code> Not found!
+    </h3>
+  </div>
+);
 
 export default App;
