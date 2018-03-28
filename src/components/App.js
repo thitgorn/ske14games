@@ -14,6 +14,8 @@ import Admin from './admin/Index'
 import AdminNavbar from './admin/Navbar'
 import UserNavbar from './user/Navbar'
 
+import SignIn from './guest/SignIn'
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -32,7 +34,8 @@ class App extends Component {
       (user) => {
         // check user login or not
         if(!!user) {
-          this.setState( {user : user , isLogin : !!user} )
+          console.log(user)
+          this.setState( {user : user , isLogin : true} )
           // check admin
           // TODO FIX THIS
           if(user.uid==='something') {
@@ -50,7 +53,8 @@ class App extends Component {
           { this.state.admin ? <AdminNavbar title={title}/> : <UserNavbar title={title} /> }
 
           <Route exact path="/" component={ ()=> <Home/>} />
-
+          <Route path="/signin" component={ ()=> <SignIn firebase={firebase}/>} />
+          <Route path="/signout" component={ ()=> {firebase.auth().signOut()}}/>
           <Route path="/admin" component={ ()=> <Admin/>} />
         </div>
       </Router>

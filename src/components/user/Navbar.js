@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
-import firebase from 'firebase'
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
-import { firebaseUiConfig } from '../../config/firebase/method'
+import { signIn , signOut } from '../../config/routes'
 
 export class Navbar extends Component {
+  constructor(props) {
+    super(props)
+  }
+
   componentDidMount() {
     document.addEventListener('DOMContentLoaded', function () {
 
@@ -39,16 +41,16 @@ export class Navbar extends Component {
           <h3>{this.props.title}</h3>
           <div className="navbar-end">
             <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link" href="/documentation/overview/start/">
-                SignIn
-              </a>
+              <div className="navbar-link">
+                Guest
+              </div>
               <div className="navbar-dropdown is-boxed is-right">
-                <div className="navbar-item">
-                  <StyledFirebaseAuth uiConfig={firebaseUiConfig} firebaseAuth={firebase.auth()}/>
-                </div>
-                <div className="navbar-item">
-                  <button onClick={ ()=> firebase.auth().signOut() }>Sign out</button> 
-                </div>
+                <a className="navbar-item" href={signIn}>
+                  SignIn
+                </a>
+                <a className="navbar-item" href={signOut}>
+                  SignOut
+                </a>
               </div>
             </div>
           </div>
