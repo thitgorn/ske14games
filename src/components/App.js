@@ -8,6 +8,8 @@ import firebase from 'firebase'
 import { config } from '../config/firebase/config'
 import { title } from '../config/config'
 
+import verifyAdmin from '../util/verifyadmin'
+
 import Home from './user/Home'
 import Admin from './admin/Index'
 
@@ -36,13 +38,9 @@ class App extends Component {
       (user) => {
         // check user login or not
         if(!!user) {
-          console.log(user)
           this.setState( {user : user , isLogin : true, username : user.displayName} )
           // check admin
-          // TODO FIX THIS
-          if(user.uid==='something') {
-            this.setState({admin : true})
-          }
+          verifyAdmin.verify(firebase,user.uid,this.setState.bind(this))
         }
       }
     );
@@ -52,7 +50,7 @@ class App extends Component {
     return (
       <Router>
         <div>
-          { this.state.admin ? <AdminNavbar title={title}/> : <UserNavbar title={title} username={this.state.username}/> }
+          { this.state.admin ? <AdminNavbar title={title} username={this.state.username}/> : <UserNavbar title={title} username={this.state.username}/> }
 
           <Route exact path="/" component={ ()=> <Home/>} />
           <Route path="/signin" component={ ()=> <SignIn firebase={firebase}/>} />
