@@ -39,7 +39,7 @@ class App extends Component {
       (user) => {
         // check user login or not
         if(!!user) {
-          this.setState( {user : user , isLogin : true, username : user.displayName} )
+          this.setState( {user : user , isLogin : true, username : (user.displayName || "unidentify" )} )
           // check admin
           verifyAdmin.verify(firebase,user.uid,this.setState.bind(this))
         }
