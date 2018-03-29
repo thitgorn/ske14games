@@ -32,7 +32,7 @@ export class Index extends Component {
             <p className="menu-label">
               Game
             </p>
-              <ul class="menu-list">
+              <ul className="menu-list">
                 <li><a className={ this.state.menu === 'viewgame' ? 'is-active' : '' } onClick={()=>{this.handleClick('viewgame')}}>View Game</a></li>
                 <li><a className={ this.state.menu === 'managegame' ? 'is-active' : '' } onClick={()=>{this.handleClick('managegame')}}>Manage Game</a></li>
                 <li><a className={ this.state.menu === 'addgame' ? 'is-active' : '' } onClick={()=>{this.handleClick('addgame')}}>Add Game</a></li>
@@ -40,7 +40,7 @@ export class Index extends Component {
             <p className="menu-label">
               Administration
             </p>
-              <ul class="menu-list">
+              <ul className="menu-list">
                 <li><a className={ this.state.menu === 'manageadmin' ? 'is-active' : '' } onClick={()=>{this.handleClick('manageadmin')}}>Manage Admin</a></li>
                 <li><a className={ this.state.menu === 'addadmin' ? 'is-active' : '' } onClick={()=>{this.handleClick('addadmin')}}>Add Admin</a></li>
               </ul>
