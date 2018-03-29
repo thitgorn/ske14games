@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import firebase from 'firebase'
+import { AddAdmin } from './AddAdmin';
 
 
 export class ManageAdmin extends Component {
@@ -23,8 +24,7 @@ export class ManageAdmin extends Component {
 
   getAdminList() {
     return this.state.adminList.map( (item,id)=> {
-      console.log(item)
-      return (<tr>
+      return (<tr key={id}>
                 <td key={id}>{item.uid}</td>
                 <td>{item.parent}</td>
                 <td>{item.date}</td>
@@ -50,7 +50,8 @@ export class ManageAdmin extends Component {
   render() {
     return (
       <div>
-        <h1 className="title is-3">View/Remove Admin</h1>
+        <h1 className="title is-3">Add/Remove Admin</h1>
+        <AddAdmin/>
         <table className="table">
           <thead>
             <tr>

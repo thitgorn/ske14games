@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
 import AddAdmin from './mAdmin/AddAdmin'
 import ManageAdmin from './mAdmin/ManageAdmin'
+import { DashBoard } from './dashboard/DashBoard';
+import { ViewGame } from './mGame/ViewGame';
+import { ManageGame } from './mGame/ManageGame';
+import { AddGame } from './mGame/AddGame';
+
+import { BrowserRouter as Route } from 'react-router-dom'
 
 export class Index extends Component {
   constructor(props) {
@@ -42,24 +48,20 @@ export class Index extends Component {
             </p>
               <ul className="menu-list">
                 <li><a className={ this.state.menu === 'manageadmin' ? 'is-active' : '' } onClick={()=>{this.handleClick('manageadmin')}}>Manage Admin</a></li>
-                <li><a className={ this.state.menu === 'addadmin' ? 'is-active' : '' } onClick={()=>{this.handleClick('addadmin')}}>Add Admin</a></li>
               </ul>
           </aside>
         </div>
         <div className="column is-three-quarters">
 
-            { this.state.menu === 'dashboard' ? <AddAdmin/> : null}
+            { this.state.menu === 'dashboard' ? <DashBoard/> : null}
 
-            { this.state.menu === 'viewgame' ? <AddAdmin/> : null}
+            { this.state.menu === 'viewgame' ? <ViewGame/> : null}
 
-            { this.state.menu === 'managegame' ? <AddAdmin/> : null}
+            { this.state.menu === 'managegame' ? <ManageGame/> : null}
 
-            { this.state.menu === 'addgame' ? <AddAdmin/> : null}
+            { this.state.menu === 'addgame' ? <AddGame/> : null}
 
             { this.state.menu === 'manageadmin' ? <ManageAdmin/> : null}
-
-            { this.state.menu === 'addadmin' ? <AddAdmin/> : null}
-            
         </div>
       </div>
     )
