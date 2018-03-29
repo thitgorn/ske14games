@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import firebase from 'firebase'
 
+var moment = require('moment');
+
 export class AddAdmin extends Component {
     constructor(props) {
         super(props)
@@ -30,7 +32,12 @@ export class AddAdmin extends Component {
 
     addAdmin() {
         if(this.state.addAdminField!=="") {
-            firebase.database().ref('/powerUser').push({ uid : this.state.addAdminField , parent : this.state.currentUser.displayName })
+            var date = moment().format('L')
+            firebase.database().ref('/powerUser').push({ 
+                uid : this.state.addAdminField , 
+                parent : this.state.currentUser.displayName  ,
+                date : date ,
+            })
             this.setState({addAdminField : ""})
         }
     }
@@ -45,7 +52,7 @@ export class AddAdmin extends Component {
                         <input className="input is-danger" type="text" value={this.state.addAdminField} onKeyPress={this.handleSubmit} onChange={this.handleChange.bind(this)} placeholder="Add more admin?"/>
                     </div>
                     <div className="column is-half">
-                        <button className="button is-dark">ADD</button>
+                        <button onClick={ ()=> {this.addAdmin()}} className="button is-dark">ADD</button>
                     </div>
                 </div>
             </div>
