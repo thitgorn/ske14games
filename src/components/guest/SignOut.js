@@ -3,8 +3,13 @@ import firebase from 'firebase'
 import { Redirect } from 'react-router'
 
 export class SignOut extends Component {
+  constructor(props) {
+      super(props)
+      firebase.auth().signOut()
+      this.props.setState( { isLogin : false, user : null, admin : false, username : "Guest" } )
+  }
+
   render() {
-    firebase.auth().signOut()
     return (
         <Redirect to="/"/>
     )

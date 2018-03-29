@@ -45,12 +45,11 @@ export class Navbar extends Component {
                 {this.props.username}
               </div>
               <div className="navbar-dropdown is-boxed is-right">
-                <a className="navbar-item" href={signIn}>
-                  SignIn
-                </a>
-                <a className="navbar-item" href={signOut}>
-                  SignOut
-                </a>
+                { this.props.username==="Guest" ? 
+                  <a className="navbar-item" href={signIn}>SignIn</a> 
+                :
+                  <a className="navbar-item" href={signOut}>SignOut</a>
+                }
               </div>
             </div>
           </div>

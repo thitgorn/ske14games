@@ -19,6 +19,8 @@ import UserNavbar from './user/Navbar'
 import SignIn from './guest/SignIn'
 import SignOut from './guest/SignOut'
 
+import UserInfo from './user/UserInfo'
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -43,7 +45,7 @@ class App extends Component {
           // check admin
           verifyAdmin.verify(firebase,user.uid,this.setState.bind(this))
         }
-        this.setState( {isLoaded : true})
+        this.setState( {isLoaded : true} )
       }
     );
   }
@@ -58,8 +60,9 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={ ()=> <Home/>} />
               <Route path="/signin" component={ ()=> <SignIn firebase={firebase}/>} />
-              <Route path="/signout" component={ ()=> <SignOut/>}/>
+              <Route path="/signout" component={ ()=> <SignOut setState={this.setState.bind(this)}/>}/>
               { this.state.admin ? <Route path="/admin" component={ ()=> <Admin isAdmin={this.state.admin}/>} /> : null }
+              <Route path="/userinfo" component={ ()=> <UserInfo/>}/>
               <Route component={NoMatch} />
             </Switch>
             :
