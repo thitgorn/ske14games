@@ -28,11 +28,14 @@ export class AddAdmin extends Component {
     }
 
     render() {
-        if(!!firebase.auth().currentUser)
+        if(!!firebase.auth().currentUser) {
             var uid = firebase.auth().currentUser.uid
+            var uname = firebase.auth().currentUser.displayName
+        }
         return (
             <div>
                 <h5>your user id : {uid}</h5>
+                <h5>your display name : {uname}</h5>
                 <input className="input is-danger" type="text" value={this.state.addAdminField} onKeyPress={this.handleSubmit} onChange={this.handleChange.bind(this)} placeholder="Add more admin?"/>
             </div>
         )
