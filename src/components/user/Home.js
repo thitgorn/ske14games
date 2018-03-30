@@ -4,9 +4,9 @@ export class Home extends Component {
   render() {
     var data = this.props.games
     console.log(data)
-    var cards = data.map((game)=> {
+    var cards = data.map((game,id)=> {
       return (
-                <div className="col-md-4 col-sm-12 p-2">
+                <div key={id} className="col-md-4 col-sm-12 p-2">
                   <div className="card">
                     <div className="card-header">
                       {game.game.title}
