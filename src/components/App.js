@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route , Switch } from 'react-router-dom'
 
+import * as routes from '../config/routes'
+
 // firebase
 import firebase from 'firebase'
 // config
@@ -58,11 +60,11 @@ class App extends Component {
 
           { this.state.isLoaded ? 
             <Switch>
-              <Route exact path="/" component={ ()=> <Home/>} />
-              <Route path="/signin" component={ ()=> <SignIn firebase={firebase}/>} />
-              <Route path="/signout" component={ ()=> <SignOut setState={this.setState.bind(this)}/>}/>
-              { this.state.admin ? <Route path="/admin" component={ ()=> <Admin isAdmin={this.state.admin}/>} /> : null }
-              <Route path="/userinfo" component={ ()=> <UserInfo/>}/>
+              <Route exact path={routes.home} component={ ()=> <Home/>} />
+              <Route path={routes.signIn} component={ ()=> <SignIn firebase={firebase}/>} />
+              <Route path={routes.signOut} component={ ()=> <SignOut setState={this.setState.bind(this)}/>}/>
+              { this.state.admin ? <Route exact path={routes.admin} component={ ()=> <Admin isAdmin={this.state.admin}/>} /> : null }
+              <Route path={routes.userInfo} component={ ()=> <UserInfo/>}/>
               <Route component={NoMatch} />
             </Switch>
             :

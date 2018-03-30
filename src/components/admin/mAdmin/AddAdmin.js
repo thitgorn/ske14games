@@ -1,13 +1,23 @@
 import React, { Component } from 'react'
 import firebase from 'firebase'
 
+var moment = require('moment');
+
 export class AddAdmin extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            addAdminField : ""
+            addAdminField : "",
+            currentUser : null
         }
         this.addAdmin = this.addAdmin.bind(this)
+    }
+
+    componentDidMount() {
+        var user = firebase.auth().currentUser
+        if(!!user) {
+            this.setState( {currentUser : user})
+        }
     }
 
     handleChange = (event) => {
@@ -22,21 +32,27 @@ export class AddAdmin extends Component {
 
     addAdmin() {
         if(this.state.addAdminField!=="") {
-            firebase.database().ref('/powerUser').push({ uid : this.state.addAdminField })
+            var date = moment().format('L')
+            firebase.database().ref('/powerUser').push({ 
+                uid : this.state.addAdminField , 
+                parent : this.state.currentUser.displayName  ,
+                date : date ,
+            })
             this.setState({addAdminField : ""})
         }
     }
 
     render() {
-        if(!!firebase.auth().currentUser) {
-            var uid = firebase.auth().currentUser.uid
-            var uname = firebase.auth().currentUser.displayName
-        }
         return (
             <div>
-                <h5>your user id : {uid}</h5>
-                <h5>your display name : {uname}</h5>
-                <input className="input is-danger" type="text" value={this.state.addAdminField} onKeyPress={this.handleSubmit} onChange={this.handleChange.bind(this)} placeholder="Add more admin?"/>
+                <div className="columns">
+                    <div className="column is-half">
+                        <input className="input is-danger" type="text" value={this.state.addAdminField} onKeyPress={this.handleSubmit} onChange={this.handleChange.bind(this)} placeholder="Add more admin?"/>
+                    </div>
+                    <div className="column is-half">
+                        <button onClick={ ()=> {this.addAdmin()}} className="button is-dark">ADD</button>
+                    </div>
+                </div>
             </div>
         )
     }
