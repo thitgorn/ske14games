@@ -52,27 +52,29 @@ export class ManageAdmin extends Component {
       <div>
         <h1 className="title is-3">Add/Remove Admin</h1>
         <AddAdmin/>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>
-                UID
-              </th>
-              <th>
-                ADDED BY
-              </th>
-              <th>
-                DATE
-              </th>
-              <th>
-                REMOVE
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.getAdminList()}
-          </tbody>
-        </table>
+        <div className="table-responsive">
+          <table className="table">
+            <thead>
+              <tr>
+                <th>
+                  UID
+                </th>
+                <th>
+                  ADDED BY
+                </th>
+                <th>
+                  DATE
+                </th>
+                <th>
+                  REMOVE
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {this.getAdminList()}
+            </tbody>
+          </table>
+        </div>
       </div>
     )
   }

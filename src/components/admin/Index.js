@@ -55,9 +55,9 @@ export class Index extends Component {
 
             { this.state.menu === 'dashboard' ? <DashBoard/> : null}
 
-            { this.state.menu === 'viewgame' ? <ViewGame/> : null}
+            { this.state.menu === 'viewgame' ? <ViewGame games={this.props.games}/> : null}
 
-            { this.state.menu === 'managegame' ? <ManageGame/> : null}
+            { this.state.menu === 'managegame' ? <ManageGame games={this.props.games}/> : null}
 
             { this.state.menu === 'addgame' ? <AddGame/> : null}
 

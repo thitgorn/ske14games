@@ -1,42 +1,25 @@
 import React, { Component } from 'react'
 
-var mockdata = [{
-  title : "Flappybird",
-  description : "Flappy bird game",
-  url : "",
-  imgurl : ""
-} , 
-{
-  title : "Flappybird",
-  description : "Flappy bird game",
-  url : "",
-  imgurl : ""
-} , 
-{
-  title : "Flappybird",
-  description : "Flappy bird game",
-  url : "",
-  imgurl : ""
-} ,
-{
-  title : "Flappybird",
-  description : "Flappy bird game",
-  url : "",
-  imgurl : ""
-}]
-
 export class Home extends Component {
   render() {
-    var cards = mockdata.map((item)=> {
+    var data = this.props.games
+    console.log(data)
+    var cards = data.map((game)=> {
       return (
                 <div className="col-md-4 col-sm-12 p-2">
                   <div className="card">
                     <div className="card-header">
-                      {item.title}
+                      {game.game.title}
                     </div>
                     <div className="card-body">
-                      <img src="" alt="mock-img" style={{border: '1px solid black' , minWidth: '120px' , minHeight: ' 120px'}}/>
-                      {item.description}
+                      <div className="row">
+                        <div className="col-6">
+                          <img src="" alt="mock-img" style={{border: '1px solid black' , minWidth: '120px' , minHeight: ' 120px'}}/>
+                        </div>
+                        <div className="col-6">
+                          {game.game.description}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

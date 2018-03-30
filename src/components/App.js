@@ -23,6 +23,10 @@ import SignOut from './guest/SignOut'
 
 import UserInfo from './user/UserInfo'
 
+// Game loader
+import { readGames } from '../util/gameUtil'
+// import mockgame from '../config/mockdata'
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -32,6 +36,7 @@ class App extends Component {
       admin : false,
       username : "Guest",
       isLoaded : false,
+      games : []
     }
     // initialize firebase
     firebase.initializeApp(config)
@@ -50,6 +55,8 @@ class App extends Component {
         this.setState( {isLoaded : true} )
       }
     );
+    readGames.getData(this.setState.bind(this))
+    // this.setState({games: mockgame})
   }
 
   render() {
@@ -60,10 +67,10 @@ class App extends Component {
 
           { this.state.isLoaded ? 
             <Switch>
-              <Route exact path={routes.home} component={ ()=> <Home/>} />
+              <Route exact path={routes.home} component={ ()=> <Home games={this.state.games}/>} />
               <Route path={routes.signIn} component={ ()=> <SignIn firebase={firebase}/>} />
               <Route path={routes.signOut} component={ ()=> <SignOut setState={this.setState.bind(this)}/>}/>
-              { this.state.admin ? <Route exact path={routes.admin} component={ ()=> <Admin isAdmin={this.state.admin}/>} /> : null }
+              { this.state.admin ? <Route exact path={routes.admin} component={ ()=> <Admin isAdmin={this.state.admin} games={this.state.games}/>} /> : null }
               <Route path={routes.userInfo} component={ ()=> <UserInfo/>}/>
               <Route component={NoMatch} />
             </Switch>

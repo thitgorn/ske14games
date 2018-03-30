@@ -3,8 +3,8 @@ import text from './text'
 
 export class DashBoard extends Component {
     render() {
-        var board = text.map((item)=> {
-            return (<div className="card" style={{ margin: '10px'}}>
+        var board = text.map((item,id)=> {
+            return (<div key={id} className="card" style={{ margin: '10px'}}>
                         <div className="card-header title is-3">{item.title}</div>
                         <div className="card-body">{item.content}</div>
                    </div>)
