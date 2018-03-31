@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import { signIn , signOut } from '../../config/routes'
+import { signIn , signOut , home } from '../../config/routes'
 
 import { Link } from 'react-router-dom'
-
-import { home } from '../../config/routes'
 
 export class Navbar extends Component {
 

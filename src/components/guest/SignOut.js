@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import firebase from 'firebase'
 import { Redirect } from 'react-router'
 
+import { home } from '../../config/routes'
+
 export class SignOut extends Component {
   constructor(props) {
       super(props)
@@ -11,7 +13,7 @@ export class SignOut extends Component {
 
   render() {
     return (
-        <Redirect to="/"/>
+        <Redirect to={home}/>
     )
   }
 }
