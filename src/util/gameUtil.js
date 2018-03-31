@@ -34,3 +34,9 @@ export var addGame = {
         firebase.database().ref('/games').push(tempGame.toJSON())
     }
 }
+
+export var deleteGame = {
+    delete : function(game) {
+        firebase.database().ref('/games/' + game.key).remove();
+    }
+}

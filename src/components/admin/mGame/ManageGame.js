@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 
-import { editGame } from '../../../util/gameUtil'
+import { editGame , deleteGame } from '../../../util/gameUtil'
 import Game from '../../../model/Game';
 
-const header = [ "id" , "Title" , "Description" , "URL" , "IMG" , "ENABLE" , "EDIT"]
+const header = [ "id" , "Title" , "Description" , "URL" , "IMG" , "ENABLE" , "EDIT" , "REMOVE"]
 const maxInputSize = {
   id : 3,
   title : 20,
@@ -64,6 +64,8 @@ export class ManageGame extends Component {
       if(item.game.id === this.state.editing) {
         return (<tr key={id}>
                   {header.map( (tag,id)=> {
+                    if(tag==="REMOVE")
+                      return <td key={id}><button className="button is-danger" onClick={()=>deleteGame.delete(item)}>REMOVE</button></td>
                     if(tag==="EDIT")
                       return <td key={id}><button className="button is-success is-outlined" onClick={()=> this.handleSaveClick(item)}>Save</button></td>
                     return <td key={id}><input type="text" 

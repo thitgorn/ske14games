@@ -61,8 +61,8 @@ class App extends Component {
   }
 
   render() {
-    var gameRoutes = this.state.games.map( (game)=>{
-      return <Route exact path={routes.gameURL(game.game.title)} component={ ()=> <GameUI game={game}/> }/>
+    var gameRoutes = this.state.games.map( (game,id)=>{
+      return <Route key={id} exact path={routes.gameURL(game.game.title)} component={ ()=> <GameUI game={game}/> }/>
     })
     return (
       <Router>
