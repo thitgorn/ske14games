@@ -25,6 +25,7 @@ import UserInfo from './user/UserInfo'
 
 // Game loader
 import { readGames } from '../util/gameUtil'
+import { GameUI } from './user/GameUI';
 // import mockgame from '../config/mockdata'
 
 class App extends Component {
@@ -60,6 +61,9 @@ class App extends Component {
   }
 
   render() {
+    var gameRoutes = this.state.games.map( (game)=>{
+      return <Route exact path={routes.gameURL(game.game.title)} component={ ()=> <GameUI game={game}/> }/>
+    })
     return (
       <Router>
         <div>
@@ -72,6 +76,7 @@ class App extends Component {
               <Route path={routes.signOut} component={ ()=> <SignOut setState={this.setState.bind(this)}/>}/>
               { this.state.admin ? <Route exact path={routes.admin} component={ ()=> <Admin isAdmin={this.state.admin} games={this.state.games}/>} /> : null }
               <Route path={routes.userInfo} component={ ()=> <UserInfo/>}/>
+              {gameRoutes}
               <Route component={NoMatch} />
             </Switch>
             :

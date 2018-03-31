@@ -4,3 +4,7 @@ export const signIn = '/signin'
 export const signOut = '/signout'
 
 export const userInfo = "/userinfo"
+
+export function gameURL(title) {
+    return "/game/" + title
+}

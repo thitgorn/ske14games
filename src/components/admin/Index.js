@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
-import AddAdmin from './mAdmin/AddAdmin'
 import ManageAdmin from './mAdmin/ManageAdmin'
 import { DashBoard } from './dashboard/DashBoard';
 import { ViewGame } from './mGame/ViewGame';
 import { ManageGame } from './mGame/ManageGame';
 import { AddGame } from './mGame/AddGame';
-
-import { BrowserRouter as Route } from 'react-router-dom'
 
 export class Index extends Component {
   constructor(props) {
@@ -59,7 +56,7 @@ export class Index extends Component {
 
             { this.state.menu === 'managegame' ? <ManageGame games={this.props.games}/> : null}
 
-            { this.state.menu === 'addgame' ? <AddGame/> : null}
+            { this.state.menu === 'addgame' ? <AddGame games={this.props.games}/> : null}
 
             { this.state.menu === 'manageadmin' ? <ManageAdmin/> : null}
         </div>
