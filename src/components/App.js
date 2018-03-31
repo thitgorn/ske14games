@@ -44,7 +44,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    
+    console.log(process.env.PUBLIC_URL)
+
     readGames.getData(this.setState.bind(this))
 
     // vertify cached user
@@ -70,7 +71,6 @@ class App extends Component {
       <Router>
         <div>
           { this.state.admin ? <AdminNavbar title={title} username={this.state.username}/> : <UserNavbar title={title} username={this.state.username}/>}
-
           { this.state.isLoaded ? 
             <Switch>
               <Route exact path={routes.home} component={ ()=> <Home games={this.state.games}/>} />

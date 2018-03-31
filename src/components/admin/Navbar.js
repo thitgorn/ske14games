@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { signIn , signOut } from '../../config/routes'
 
+import { home } from '../../config/routes'
 import { Link } from 'react-router-dom'
 
 export class Navbar extends Component {
@@ -37,7 +38,7 @@ export class Navbar extends Component {
       <div>
         <nav className="navbar is-warning">
           <div className="navbar-item is-hoverable is-boxed">
-            <Link style={{textDecoration:'none' , color:'black'}} to="/"><h1 className="title is-3">{this.props.title}</h1></Link>
+            <Link style={{textDecoration:'none' , color:'black'}} to={home}><h1 className="title is-3">{this.props.title}</h1></Link>
           </div>
           <div className="navbar-end">
             <div className="navbar-item is-hoverable">

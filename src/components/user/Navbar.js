@@ -3,6 +3,8 @@ import { signIn , signOut } from '../../config/routes'
 
 import { Link } from 'react-router-dom'
 
+import { home } from '../../config/routes'
+
 export class Navbar extends Component {
 
   componentDidMount() {
@@ -37,7 +39,7 @@ export class Navbar extends Component {
       <div>
         <nav className="navbar is-warning">
           <div className="navbar-item is-hoverable is-boxed">
-            <Link style={{textDecoration:'none' , color:'black'}} to="/"><h1 className="title is-3">{this.props.title}</h1></Link>
+            <Link style={{textDecoration:'none' , color:'black'}} to={home}><h1 className="title is-3">{this.props.title}</h1></Link>
           </div>
           <div className="navbar-end">
             <div className="navbar-item has-dropdown is-hoverable">
