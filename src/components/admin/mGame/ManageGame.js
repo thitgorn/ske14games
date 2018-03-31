@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { editGame , deleteGame } from '../../../util/gameUtil'
 import Game from '../../../model/Game';
 
-const header = [ "id" , "Title" , "Description" , "URL" , "IMG" , "ENABLE" , "EDIT" , "REMOVE"]
+const header = [ "id" , "Title" , "Description" , "URL" , "IMG" , "ENABLE" , "REMOVE" , "EDIT"]
 const maxInputSize = {
   id : 3,
   title : 20,

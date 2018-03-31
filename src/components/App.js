@@ -44,6 +44,9 @@ class App extends Component {
   }
 
   componentDidMount() {
+    
+    readGames.getData(this.setState.bind(this))
+
     // vertify cached user
     firebase.auth().onAuthStateChanged(
       (user) => {
@@ -56,7 +59,6 @@ class App extends Component {
         this.setState( {isLoaded : true} )
       }
     );
-    readGames.getData(this.setState.bind(this))
     // this.setState({games: mockgame})
   }
 
