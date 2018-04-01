@@ -34,7 +34,7 @@ class App extends Component {
     this.state = {
       isLogin : false,
       user : null,
-      admin : false,
+      admin : true,
       username : "Guest",
       isLoaded : false,
       games : []
