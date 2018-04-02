@@ -10,7 +10,7 @@ import firebase from 'firebase'
 import { config } from '../config/firebase/config'
 import { title } from '../config/config'
 
-import verifyAdmin from '../util/verifyadmin'
+// import verifyAdmin from '../util/verifyadmin'
 
 import Home from './user/Home'
 import Admin from './admin/Index'
@@ -34,7 +34,7 @@ class App extends Component {
     this.state = {
       isLogin : false,
       user : null,
-      admin : true,
+      admin : false,
       username : "Guest",
       isLoaded : false,
       games : []
@@ -55,7 +55,8 @@ class App extends Component {
         if(!!user) {
           this.setState( {user : user , isLogin : true, username : (user.displayName || "unidentify" )} )
           // check admin
-          verifyAdmin.verify(firebase,user.uid,this.setState.bind(this))
+          // verifyAdmin.verify(firebase,user.uid,this.setState.bind(this))
+          this.setState( {admin : true})
         }
         this.setState( {isLoaded : true} )
       }

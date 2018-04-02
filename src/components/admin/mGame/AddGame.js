@@ -94,7 +94,7 @@ export class AddGame extends Component {
               <input className="input" type="number" placeholder="id" onChange={this.handleId.bind(this)}/>
             </div>
             <div className="col-md-8">
-              { !this.state.validate.id && <p class="help is-danger">this ID is already in used</p>}
+              { !this.state.validate.id && <p className="help is-danger">this ID is already in used</p>}
             </div>
           </div>
 
@@ -106,7 +106,7 @@ export class AddGame extends Component {
               <input className="input" type="text" placeholder="this will be url" onChange={this.handleTitle.bind(this)}/>
             </div>
             <div className="col-md-8">
-              { !this.state.validate.title && <p class="help is-danger">this name is already in used</p>}
+              { !this.state.validate.title && <p className="help is-danger">this name is already in used</p>}
             </div>
           </div>
 
