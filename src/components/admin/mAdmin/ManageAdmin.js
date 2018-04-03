@@ -48,6 +48,9 @@ export class ManageAdmin extends Component {
   }
 
   render() {
+    var ths = ['UID' , 'ADDED BY' , 'DATE' , 'REMOVE'].map((item, id) => {
+      return <th key={id}>{item}</th>
+    })
     return (
       <div>
         <h1 className="title is-3">Add/Remove Admin</h1>
@@ -56,18 +59,7 @@ export class ManageAdmin extends Component {
           <table className="table">
             <thead>
               <tr>
-                <th>
-                  UID
-                </th>
-                <th>
-                  ADDED BY
-                </th>
-                <th>
-                  DATE
-                </th>
-                <th>
-                  REMOVE
-                </th>
+                {ths}
               </tr>
             </thead>
             <tbody>
