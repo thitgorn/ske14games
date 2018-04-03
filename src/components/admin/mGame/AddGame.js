@@ -25,22 +25,25 @@ export class AddGame extends Component {
     }
   }
 
+  componentDidMount() {
+    this.autoAssignId()
+  }
+
   handleAdd() {
     var game = new Game(this.state.input.id , this.state.input.title , this.state.input.description , this.state.input.url , this.state.input.img , this.state.input.enable)
     addGame.add(game)
   }
 
-  handleId(event) {
-    // change value
+  autoAssignId() {
+    // auto assign id
+    var max = this.props.games.length > 0 ? this.props.games.reduce( (current, next)=> {
+      return current > next ? current : next
+    }).game.id : -1
+
     var temp = this.state.input
-    temp.id = parseInt(event.target.value,10)
-    // id logic
-    var arr = this.props.games.filter( (game)=>{
-      return game.game.id === temp.id
-    } )
-    var vtemp = this.state.validate
-    arr.length===0 ? vtemp.id = true : vtemp.id = false
-    this.setState({input : temp , validate : vtemp })
+    temp.id = max + 1
+
+    this.setState( {input : temp } )
   }
 
   handleTitle(event) {
@@ -91,10 +94,7 @@ export class AddGame extends Component {
               <label className="label">ID</label>
             </div>
             <div className="col-md-2">
-              <input className="input" type="number" placeholder="id" onChange={this.handleId.bind(this)}/>
-            </div>
-            <div className="col-md-8">
-              { !this.state.validate.id && <p className="help is-danger">this ID is already in used</p>}
+              <input className="input" type="number" value={this.state.input.id} disabled/>
             </div>
           </div>
 
