@@ -72,7 +72,7 @@ class App extends Component {
       <Router>
         <div>
           { this.state.admin ? <AdminNavbar title={title} username={this.state.username}/> : <UserNavbar title={title} username={this.state.username}/>}
-          { this.state.isLoaded ? 
+          { this.state.isLoaded ?
             <Switch>
               <Route exact path={routes.home} component={ ()=> <Home games={this.state.games}/>} />
               <Route path={routes.signIn} component={ ()=> <SignIn firebase={firebase}/>} />

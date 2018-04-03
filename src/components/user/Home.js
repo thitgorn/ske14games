@@ -7,7 +7,7 @@ export class Home extends Component {
     var data = this.props.games
     var cards = data.map((game,id)=> {
       return (
-              <div key={id} className="col-md-4 col-sm-12 p-2">
+              <div key={id} className="col-md-4 col-sm-12 p-3">
                 <GameCard game={game} />
               </div>
               )
